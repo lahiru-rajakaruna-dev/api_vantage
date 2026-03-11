@@ -1,20 +1,20 @@
-name: TEST
-run-name: ${{github.actor}} is testing your projects' units.
+name: Test Source
 on:
   push:
     branches:
       - main
 
 env:
-  NODE_ENV: TEST
-  POSTGRES_DATABASE_URL: ""
-  ORM_STRATEGY: drizzle
-  DATABASE_STRATEGY: postgres
+  NODE_ENV: ${{vars.NODE_ENV}}
+  POSTGRES_DATABASE_URL: ${{DATABASE_URL}}
+  ORM_STRATEGY: ${{vars.ORM_STRATEGY}}
+  DATABASE_STRATEGY: ${{vars.DATABASE_STRATEGY}}
 
 jobs:
   test_units:
+    environment: test
     name: Testing Project Units
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,9 +22,11 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v6
 
+      - name: Install pnpm
+        run: npm i -g pnpm@latest
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Run unit test
-        run: npm run test
-
+        run: pnpm run test
