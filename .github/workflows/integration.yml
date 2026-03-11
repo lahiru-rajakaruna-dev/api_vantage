@@ -31,6 +31,7 @@ jobs:
         run: pnpm run test
 
   test-build:
+    needs: [ test_units ]
     environment: test
     runs-on: ubuntu-latest
     steps:
