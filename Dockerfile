@@ -2,6 +2,7 @@ FROM node:20-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json
 RUN npm i -g pnpm@latest
+RUN pnpm install
 COPY . .
 RUN pnpm run build
 
