@@ -23,7 +23,7 @@ jobs:
         run: pnpm install
 
       - name: Build Image
-        run: "docker build -t ghcr.io/${{gihub.actor}}/vantage_api:v0.1 ."
+        run: "docker build -t ghcr.io/${{github.actor}}/vantage_api:v0.1 ."
 
       - name: Login to GitHub Registry
         run: "echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u ${{github.actor}} --password-stdin"
