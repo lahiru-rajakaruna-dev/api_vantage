@@ -1,0 +1,36 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build-application:
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Pnpm
+        run: npm i -g pnpm@latest
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Image
+        run: docker build -t ghcr.io/lahiru-rajakruna-dev/vantage_api:v0.1 .
+
+      - name: Login to GitHub Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.token}}
+
+      - name: Push Image to Github Registry
+        run: docker push ghcr.io/lahiru-rajakaruna-dev/vantage_api:v0.1
