@@ -31,7 +31,6 @@ jobs:
         run: pnpm run test
 
   test-build:
-    needs: [ test_units ]
     environment: test
     runs-on: ubuntu-latest
     steps:
@@ -42,4 +41,4 @@ jobs:
         run: npm i -g pnpm@latest
 
       - name: Build Image
-        run: docker build -t ghcr.io/lahiru-rajakaruna-dev/vantage-api:v0.1
+        run: docker build -t ghcr.io/lahiru-rajakaruna-dev/vantage-api:v0.1 .
