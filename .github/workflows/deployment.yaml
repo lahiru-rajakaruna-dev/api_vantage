@@ -39,7 +39,7 @@ jobs:
       contents: read
     environment: production
     env:
-      DOCKER_IMAGE_NAME: ${{secrets.GCLOUD_ARTIFACT_REGISTRY_LOCATION}}-docker.pkg.dev/${{secrets.GCLOUD_PROJECT_ID}}/${{secrets.GCLOUD_ARTIFACT_REGISTRY_REPO_NAME}}/api__vantage:v0.1
+      DOCKER_IMAGE_NAME: "${{secrets.GCLOUD_ARTIFACT_REGISTRY_LOCATION}}-docker.pkg.dev/${{secrets.GCLOUD_PROJECT_ID}}/${{secrets.GCLOUD_ARTIFACT_REGISTRY_REPO_NAME}}/api__vantage:v0.1"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -53,7 +53,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v3
 
       - name: Configure docker
-        run: "glcoud auth configure-docker ${{secrets.GCLOUD_ARTIFACT_REPOSITORY_LOCATION}}-docker.pk.dev"
+        run: "gcloud auth configure-docker ${{secrets.GCLOUD_ARTIFACT_REPOSITORY_LOCATION}}-docker.pk.dev"
 
       - name: Build Image
         run: docker build -t ${{env.DOCKER_IMAGE_NAME}} .
