@@ -62,7 +62,7 @@ jobs:
         with:
           registry: ${{secrets.GCLOUD_ARTIFACT_REGISTRY_LOCATION}}-docker-pkg.dev
           username: "oauth2accesstoken"
-          password: ${{steps.gcloud-auth.outputs.token}}
+          password: ${{steps.gcloud-auth.outputs.access_token}}
 
       - name: Build Image
         run: docker build -t ${{env.DOCKER_IMAGE_NAME}} .
