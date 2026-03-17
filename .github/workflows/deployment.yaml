@@ -33,7 +33,6 @@ jobs:
         run: "docker push ghcr.io/${{github.actor}}/vantage_api:v0.1"
 
   build-and-push-to-google-cloud:
-    needs: [ build-and-push-to-ghcr ]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -60,7 +59,7 @@ jobs:
       - name: Docker Login
         uses: docker/login-action@v3
         with:
-          registry: ${{secrets.GCLOUD_ARTIFACT_REGISTRY_LOCATION}}-docker-pkg.dev
+          registry: ${{secrets.GCLOUD_ARTIFACT_REGISTRY_LOCATION}}-docker.pkg.dev
           username: "oauth2accesstoken"
           password: ${{steps.gcloud-auth.outputs.access_token}}
 
