@@ -1,31 +1,24 @@
 // --- ENUMS (Arrays for SQLite) ---
 export const PaymentStatus      = [
-    'PENDING',
-    'PAID',
-    'VERIFIED',
-    'REFUNDED'
+	'PENDING',
+	'PAID',
+	'VERIFIED',
+	'REFUNDED',
 ] as const;
-export const SubscriptionStatus = [
-    'VALID',
-    'EXPIRED'
-] as const;
+export const SubscriptionStatus = ['VALID', 'EXPIRED'] as const;
 export const OrganizationStatus = [
-    'ACTIVE',
-    'DEACTIVATED',
-    'SUSPENDED',
-    'TRIAL'
+	'ACTIVE',
+	'DEACTIVATED',
+	'SUSPENDED',
+	'TRIAL',
 ] as const;
-export const AccountStatus      = [
-    'ACTIVE',
-    'DEACTIVATED',
-    'UNVERIFIED'
-] as const;
+export const AccountStatus      = ['ACTIVE', 'DEACTIVATED', 'UNVERIFIED'] as const;
 export const EmployeeStatus     = [
-    'ON_FIELD',
-    'ON_LEAVE',
-    'SUSPENDED',
-    'FIRED',
-    'NOT_REPORTED'
+	'ON_FIELD',
+	'ON_LEAVE',
+	'SUSPENDED',
+	'FIRED',
+	'NOT_REPORTED',
 ] as const;
 
 /*

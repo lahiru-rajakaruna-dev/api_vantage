@@ -1,7 +1,12 @@
-import {HttpException, HttpStatus, Injectable, NestMiddleware} from '@nestjs/common';
-import {ConfigService}                                         from "@nestjs/config";
-import jwt                                                     from "jsonwebtoken";
-import {e}                                                     from "../../../application";
+import {
+	HttpException,
+	HttpStatus,
+	Injectable,
+	NestMiddleware,
+}                      from '@nestjs/common';
+import {ConfigService} from '@nestjs/config';
+import jwt             from 'jsonwebtoken';
+import {e}             from '../../../application';
 import NestRequest = e.NestRequest;
 import NestResponse = e.NestResponse;
 
@@ -16,30 +21,29 @@ export class AuthMiddlewareService implements NestMiddleware {
 	}
 
 	use(req: NestRequest, res: NestResponse, next: (error?: Error) => void): any {
-		const {cookies} = req
-		const token     = cookies["access_token"]
+		const {cookies} = req;
+		const token     = cookies['access_token'];
 
 		if (!token) {
-			throw new HttpException("Unauthorized", HttpStatus.UNAUTHORIZED, {
-				cause: "Not logged in"
-			})
+			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED, {
+				cause: 'Not logged in',
+			});
 		}
 
 		const decodedToken = jwt.verify(
 			token,
-			this.configService.get("JWT_SECRET_KEY")!,
+			this.configService.get('JWT_SECRET_KEY')!,
 			{
 				complete: true,
-			}
-		)
-		const sessionId    = decodedToken.payload["token"]
+			},
+		);
+		const sessionId    = decodedToken.payload['token'];
 
 		if (!decodedToken.payload || !sessionId) {
-			throw new HttpException("Token tampered...", HttpStatus.UNAUTHORIZED)
+			throw new HttpException('Token tampered...', HttpStatus.UNAUTHORIZED);
 		}
 
-		req.sessionId = sessionId
+		req.sessionId = sessionId;
 		next();
 	}
-
 }

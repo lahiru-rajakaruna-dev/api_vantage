@@ -1,5 +1,5 @@
 import {Module}                       from '@nestjs/common';
-import {LoggerModule}                 from "../logger/logger.module";
+import {LoggerModule}                 from '../logger/logger.module';
 import {NodeCacheSessionStoreService} from './node_cache.session_store/node_cache.session_store.service';
 
 
@@ -7,7 +7,7 @@ import {NodeCacheSessionStoreService} from './node_cache.session_store/node_cach
 @Module({
 			imports  : [LoggerModule],
 			providers: [NodeCacheSessionStoreService],
-			exports  : [NodeCacheSessionStoreService]
+			exports  : [NodeCacheSessionStoreService],
 		})
 export class SessionStoreModule {
 }

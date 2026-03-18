@@ -11,7 +11,9 @@ describe('NodeCacheSessionStoreService', () => {
 																		 providers: [NodeCacheSessionStoreService],
 																	 }).compile();
 
-		service = module.get<NodeCacheSessionStoreService>(NodeCacheSessionStoreService);
+		service = module.get<NodeCacheSessionStoreService>(
+			NodeCacheSessionStoreService,
+		);
 	});
 
 	it('should be defined', () => {
