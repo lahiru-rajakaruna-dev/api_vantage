@@ -43,8 +43,7 @@ import {
 import {DrizzleModule}                                                    from './orm/drizzle/drizzle.module';
 import {OrmModule}                                                        from './orm/orm.module';
 import {PaddleModule}                                                     from './paddle/paddle.module';
-
-
+import {SessionStoreModule}                                               from './session_store/session_store.module';
 
 
 
@@ -74,7 +73,9 @@ import {PaddleModule}                                                     from '
 				EmployeesActivitiesModule,
 				EmployeesSyncsModule,
 				EmployeeSalaryModule,
-          ],
+				CacheModule,
+				SessionStoreModule,
+			],
 			controllers: [
 				AppController,
 			],
