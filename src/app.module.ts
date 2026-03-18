@@ -89,9 +89,25 @@ import {SessionStoreModule}                                               from '
 			]
 		})
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(Middleware_OrganizationPuller)
-            .exclude({path: "/health", method: RequestMethod.ALL})
-            .forRoutes('*');
-  }
+	configure(consumer: MiddlewareConsumer) {
+		consumer.apply(
+			(req, res, next) => {
+				console.debug(req.headers);
+				next()
+			},
+			AuthMiddlewareService,
+			SessionMiddlewareService
+		)
+				.exclude(
+					{
+						path  : "/health",
+						method: RequestMethod.ALL
+					},
+					{
+						path  : '/auth/{*wildcard}',
+						method: RequestMethod.ALL
+					}
+				)
+				.forRoutes('*');
+	}
 }
